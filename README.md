@@ -5,7 +5,7 @@ The array of sensors was designed to measure the sub-convective wall pressure fl
 The sample codes have been written assuming a sensor arrangement used by [Damani et al. 2024](https://arc.aiaa.org/doi/abs/10.2514/6.2024-3048). 
 The sensors comprised 80 sub-resonant sensors arrange periodically along the flow direction and each sensor had a rectangular profile with a 5 mm length along the flow direction and 50 mm in the spanwise direction.
 The mathematical approach taken towards the codes is described in section V of the conference publication.
-Four wall pressure modeling codes have been provided for four well-known wall pressure models used: [Corcos](https://www.sciencedirect.com/science/article/abs/pii/0022460X67901587), [Modified Corcos](https://apps.dtic.mil/sti/citations/ADA465806), [Smol'yakov](https://link.springer.com/article/10.1134/S1063771006030146) and [incompressible Chase](https://www.sciencedirect.com/science/article/abs/pii/0022460X80905532). 
+Four wall pressure modeling codes have been provided for four well-known wall pressure models: [Corcos](https://www.sciencedirect.com/science/article/abs/pii/0022460X67901587), [Modified Corcos](https://apps.dtic.mil/sti/citations/ADA465806), [Smol'yakov](https://link.springer.com/article/10.1134/S1063771006030146) and [incompressible Chase](https://www.sciencedirect.com/science/article/abs/pii/0022460X80905532). 
 Users are encouraged to use the codes to run different configurations of sensors and adapt these to flow-specific conditions.
 
 ## List of Functions and Scripts
