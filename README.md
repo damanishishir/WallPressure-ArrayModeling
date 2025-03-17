@@ -21,5 +21,4 @@ Users are encouraged to use the codes to run different configurations of sensors
 + [The Characteristics of Sub-Convective Wall Pressure Fluctuations in a Turbulent Boundary Layer](https://arc.aiaa.org/doi/abs/10.2514/6.2024-1904)
 + [Evaluating Models for Sub-Convective Pressure Fluctuations in Turbulent Boundary Layers](https://arc.aiaa.org/doi/abs/10.2514/6.2024-3048)
 + [Measurement and Analysis of Sub-Convective Pressure Fluctuations in Turbulent Boundary Layers: A Novel Methodology](https://vtechworks.lib.vt.edu/items/d3a198f2-1437-46fb-959f-310f25084c21)
-
-For five boundary layer flow conditions and wind tunnel data, refer: [DOI 10.7294/28395098](https://doi.org/10.7294/28395098.v1)
++ For five boundary layer flow conditions and wind tunnel data: [DOI 10.7294/28395098](https://doi.org/10.7294/28395098.v1)
