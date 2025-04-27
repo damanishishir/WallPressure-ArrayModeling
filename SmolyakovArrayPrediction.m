@@ -111,7 +111,7 @@ end
 Smolyakov_CppArrayFull = [conj(Smolyakov_CppArrayFlat);Smolyakov_CppArrayFlat(end-1:-1:2,:)];
 % Applying a Hanning window prior to Fourier transform and scaling the
 % normalized CSD function to yield dimensional form
-Smolyakov_CppArrayWin = Smolyakov_CppArrayFull.*fftshift(hanning(length(Smolyakov_CppArrayFull(:,1)),'periodic'))./sqrt(3/8)./(Ue/deltas/tauw^2);
+Smolyakov_CppArrayWin = Smolyakov_CppArrayFull.*fftshift(hanning(length(Smolyakov_CppArrayFull(:,1)),'periodic'))./(Ue/deltas/tauw^2);
 
 % Fourier transform in space
 Phipp_Smolyakov = fft(Smolyakov_CppArrayWin).*deltay1./2./pi; % Pa^2/Hz/(rad/m)
