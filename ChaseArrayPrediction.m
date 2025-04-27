@@ -106,7 +106,7 @@ end
 Chase_CppArrayFull = [conj(Chase_CppArrayFlat);Chase_CppArrayFlat(end-1:-1:2,:)];
 % Applying a Hanning window prior to Fourier transform and scaling the
 % normalized CSD function to yield dimensional form
-Chase_CppArrayWin = Chase_CppArrayFull.*fftshift(hanning(length(Chase_CppArrayFull(:,1)),'periodic'))./sqrt(3/8);
+Chase_CppArrayWin = Chase_CppArrayFull.*fftshift(hanning(length(Chase_CppArrayFull(:,1)),'periodic'));
 
 % Fourier transform in space to yield wavenumber-frequnecy spectrum
 Phipp_Chase = fft(Chase_CppArrayWin)*deltay1/2/pi; % Pa^2/(rad/s)/(rad/m)
