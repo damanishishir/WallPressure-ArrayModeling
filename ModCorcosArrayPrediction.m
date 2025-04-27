@@ -111,7 +111,7 @@ end
 ModCorcos_CppArrayFull = [conj(ModCorcos_CppArrayFlat);ModCorcos_CppArrayFlat(end-1:-1:2,:)];
 % Applying a Hanning window prior to Fourier transform and scaling the
 % normalized CSD function to yield dimensional form
-ModCorcos_CppArrayWin = ModCorcos_CppArrayFull.*fftshift(hanning(length(ModCorcos_CppArrayFull(:,1)),'periodic'))./sqrt(3/8)./(Ue/deltas/tauw^2);
+ModCorcos_CppArrayWin = ModCorcos_CppArrayFull.*fftshift(hanning(length(ModCorcos_CppArrayFull(:,1)),'periodic'))./(Ue/deltas/tauw^2);
 
 % Fourier transform in space to yield wavenumber-frequnecy spectrum
 Phipp_ModCorcos = fft(ModCorcos_CppArrayWin)*deltay1/2/pi; % Pa^2/Hz/(rad/m)
