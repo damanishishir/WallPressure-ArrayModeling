@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 370" role="img" aria-labelledby="title desc">
+<title id="title">Forward model of spatially averaging wall-pressure sensor arrays</title>
+<desc id="desc">A pressure spectrum model and sensor spatial sensitivity are combined to produce cross-spectra, then sampled by the array and transformed into estimated wavenumber-frequency spectra.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="#475569"/></marker></defs>
+<rect width="1120" height="370" rx="22" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" text-anchor="middle">
+<rect x="33" y="35" width="313" height="106" rx="14" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+<text x="189" y="64" font-size="22" font-weight="bold" fill="#075985">Wall-pressure model</text><text x="189" y="92" font-size="18" fill="#075985">Φpp(k₁, k₃, ω)</text><text x="189" y="119" font-size="16" fill="#334155">Chase (primary) / Corcos (baseline)</text>
+<rect x="774" y="35" width="313" height="106" rx="14" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+<text x="930" y="64" font-size="22" font-weight="bold" fill="#115e59">Sensor transfer functions</text><text x="930" y="92" font-size="18" fill="#115e59">Hᵢ(k₁, k₃), Hⱼ(k₁, k₃)</text><text x="930" y="119" font-size="16" fill="#334155">Area, pore positions and weights</text>
+<rect x="352" y="198" width="416" height="88" rx="14" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+<text x="560" y="230" font-size="22" font-weight="bold" fill="#1e293b">Predicted sensor cross-spectra</text><text x="560" y="262" font-size="21" fill="#334155">Gᵢⱼ(ω)</text>
+<rect x="352" y="315" width="416" height="43" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+<text x="560" y="343" font-size="19" font-weight="bold" fill="#5b21b6">Array sampling + spectral estimator → Φ̂(k₁, ω)</text>
+</g>
+<g stroke="#475569" stroke-width="2.5" fill="none" marker-end="url(#arrow)"><path d="M189 141 V173 H458 V198"/><path d="M930 141 V173 H662 V198"/><path d="M560 286 V313"/></g>
+</svg>
