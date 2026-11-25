@@ -1,5 +1,20 @@
+% DOCUMENTATION MAP — Smolyakov forward array modeling
+% See README.md: Sections 2 (sensing), 3 (model), 4 (array FFT), 6 (usage).
+% Pipeline: flow parameters -> pore coordinates/weights -> array separations
+% -> point-pressure CSD -> weighted pore-pair sum -> conjugate spatial lags
+% -> spatial Hann window -> streamwise FFT -> plots.
+% The pore interface is approximated by discrete sensitivity points;
+% microphone/cavity frequency response is NOT modeled here.
+% For the default geometry, 80 sensors each have 4 x 20 = 80 pore points.
+% IMPORTANT: changing L1/L3 alone does not move the pore positions z1/z3.
+% The spatial FFT stage presumes an equally spaced streamwise lag sequence.
+% The default convective speed ratio Uc_Ue is constant with frequency.
+
 % Evaluates the wavenumber-frequency spectra as measured by an array of 80 sub-resonant sensors
-% as described in Damani et al. 2024 (https://arc.aiaa.org/doi/abs/10.2514/6.2024-1904)
+% Primary reference: Damani et al. (2025), J. Fluid Mech. 1014, A26
+% https://doi.org/10.1017/jfm.2025.10313
+% Associated data: https://doi.org/10.7294/28395098.v2
+% Earlier methodology: https://doi.org/10.2514/6.2024-1904
 % Uses the Smol'yakov (2006) model
 % Assumes constant convection velocity (can support frequency dependent form - Line 39)
 % Inputs: Boundary layer conditions (Defined in Section 1)
@@ -47,15 +62,15 @@ Goody_K0 = [3, 2, 0.75, 0.5, 3.7, 1.1, -0.57, 7, 1]; % Empirical constants of Go
 a1 = 0.3275; % Streamwise correlation factor for Modified Corcos model (Corcos value is 0.1)
 a3 = 0.77; % Spanwise correlation factor for Modified Corcos model (Corcos value is 0.77)
 
-%% Defining sensor area and distinct sensor separations for CSD evaluation   
+%% Sensor spatial sensitivity and array geometry (README Sections 2 and 4)
 % The sensor comprises of 80 pores arranged over a rectangle
 % A simple representation shown here (Circle - pores and # - boundary)
-% ############   ###########    ############   ###########    
-% #  ⭘  ⭘  #   #  ⭘  ⭘  #    #  ⭘  ⭘  #   #  ⭘  ⭘  # --> 
+% ############   ###########    ############   ###########
+% #  ⭘  ⭘  #   #  ⭘  ⭘  #    #  ⭘  ⭘  #   #  ⭘  ⭘  # -->
 % #  ⭘  ⭘  #   #  ⭘  ⭘  #    #  ⭘  ⭘  #   #  ⭘  ⭘  #
 % #  ⭘  ⭘  #   #  ⭘  ⭘  #    #  ⭘  ⭘  #   #  ⭘  ⭘  # --> Flow
 % #  ⭘  ⭘  #   #  ⭘  ⭘  #    #  ⭘  ⭘  #   #  ⭘  ⭘  #
-% #  ⭘  ⭘  #   #  ⭘  ⭘  #    #  ⭘  ⭘  #   #  ⭘  ⭘  # --> 
+% #  ⭘  ⭘  #   #  ⭘  ⭘  #    #  ⭘  ⭘  #   #  ⭘  ⭘  # -->
 % ############   ###########    ############   ###########
 L1 = 5e-3; % Dimension along flow direction
 L3 = 50e-3; % Dimension along spanwise direction (across flow)
@@ -65,7 +80,7 @@ z3 = -L3/2+1.25e-3:2.5e-3:L3/2;   % Pore distribution in spanwise direction for 
 
 % Defining sensitivity over each pore
 Sn = ones(size(z1A))/length(z1)/length(z3); % Assumed uniform hence summation over all pores = 1
-Sm = Sn; % Sensitivity of another sensor (can be changed if assuming a different sensitivity)
+Sm = Sn; % Sensitivity of second sensor (change to represent a different spatial weighting)
 
 % Defining sensor position in space (Array comprised of 80 sensors)
 y1 = (-39:40)*5.5*1e-3; % Streamwise location of sensor centroid [m] (Assumed linear arrangement)
@@ -82,7 +97,7 @@ deltay1=dy1u(2)-dy1u(1); % Minimum separation between sensor [m]
 dk1=2*pi/deltay1/npts; % Defining wavenumber resolution based on total number of positions in space
 k1stream = (0:npts-1)*dk1; % Defining wavenumber vector [rad/m] for evaluating the model
 
-%% Estimating the spectrum using Incompressible Chase (1980) model
+%% Point-pressure model and pore-pair CSD: Smolyakov (README Section 3)
 % For further details on this process refer section 6.2 in PhD dissertation
 om = 2*pi*freq*deltas/Ue; % Defining normalized frequency for model function
 RT = utau^2*delta/Ue/(viscosity/AirDensity); % ratio of inner to outer scales
@@ -96,7 +111,7 @@ for n=1:length(dyu)
     disp(n)
     % Uses defined model function (see section at end of script) to evaluate the cross-spectra between
     % indvidual pores and performs a selective summation based on sensor position
-    Smolyakov_CppArray(n,:) = SmolyakovCpp_Sensor(om,real(dyu(n)),imag(dyu(n)),z1A(:),z3A(:),z1A(:),z3A(:),Sn(:),Sm(:),Uc_Ue,Ut_Ue,deltas,deltas/delta,RT,Goody_K0); % normalized as Cpp*Ue/deltastar/tau_w^2 
+    Smolyakov_CppArray(n,:) = SmolyakovCpp_Sensor(om,real(dyu(n)),imag(dyu(n)),z1A(:),z3A(:),z1A(:),z3A(:),Sn(:),Sm(:),Uc_Ue,Ut_Ue,deltas,deltas/delta,RT,Goody_K0); % normalized as Cpp*Ue/deltastar/tau_w^2
 end
 
 % Plot and process cross-spectral matrix
@@ -107,9 +122,9 @@ for m=1:length(dy1u)
     Smolyakov_CppArrayFlat(m,:)=mean(Smolyakov_CppArray(a,:),1); % Normalized CSM
 end
 
-% Conjugate flipping for Fourier transform (Appending negative separations)
+% Reconstruct signed separation sequence using C(-dx,f) = conj(C(dx,f)); verify ordering if geometry changes
 Smolyakov_CppArrayFull = [conj(Smolyakov_CppArrayFlat);Smolyakov_CppArrayFlat(end-1:-1:2,:)];
-% Applying a Hanning window prior to Fourier transform and scaling the
+% Apply periodic Hann spatial window before FFT (this controls spectral leakage); scaling the
 % normalized CSD function to yield dimensional form
 Smolyakov_CppArrayWin = Smolyakov_CppArrayFull.*fftshift(hanning(length(Smolyakov_CppArrayFull(:,1)),'periodic'))./(Ue/deltas/tauw^2);
 
@@ -140,7 +155,7 @@ xlabel('$\Delta x_1 [m]$'); ylabel('Frequency [Hz]');
 title('Cross-Spectrum Estimate')
 set(gca,'TickDir','out');
 
-%% Plotting k1-f spectrum
+%% Streamwise wavenumber-frequency estimate (README Section 4)
 
 figure
 set(gcf,'position',[500 500 500 400])
@@ -151,7 +166,7 @@ plot(kc,freq,'--r','Linewidth',2)
 xlim([k1stream(1) k1stream(end)/2])
 ylim([freq(1) freq(end)])
 cmap = cubehelix(nlevels,1.5,-1.5,1.5,1,[0.0,1.0],[0.0,1.0]);colormap(cmap);colorbar
-clim([0 60]); 
+clim([0 60]);
 xlabel('$k_1 [rad/m]$'); ylabel('Frequency [Hz]');
 title('$k1-f$ Spectrum Estimate')
 set(gca,'TickDir','out');
@@ -184,7 +199,7 @@ title(strcat('$k_1 \delta^*=$',num2str(round(k1stream(mm).*deltas,3)),' / $k_1$=
 %% Functions
 %%% Sensor cross-spectrum using Smolyakov
 function res = SmolyakovCpp_Sensor(om,y1,y3,z1n,z3n,z1m,z3m,Sn,Sm,UcUe,UtauUe,deltas,dsd,RT,Goody_K)
-% res - spatial crosspectrum, normalized as Cpp*Ue/deltastar/tau_w^2 
+% res - spatial crosspectrum, normalized as Cpp*Ue/deltastar/tau_w^2
 % y1, y3 - difference in sensor origin locations y(n)-y(m) in meters
 % z1n,z3n - coordinates of pore locations on sensor n (should be 1D arrays of same size, 1xN), relative to sensor origin
 % z1m,z3m - coordinates of pore locations on sensor m (should be 1D arrays of same size, 1xM), relative to sensor origin
@@ -207,7 +222,7 @@ end
 
 %%% Pointwise cross-spectrum from Smolyakov spectrum
 function res = SmolyakovCpp_Point(om,x1,x3,UcUe,UtauUe,deltas,dsd,RT,Goody_K)
-% res - spatial crosspectrum, normalized as Cpp*Ue/deltastar/tau_w^2 
+% res - spatial crosspectrum, normalized as Cpp*Ue/deltastar/tau_w^2
 % x1, x3 - spatial separation normalized as x/deltastar
 % om - angular frequency normalized as omega*deltastar/Ue
 % dsd - deltastar/delta
@@ -233,7 +248,7 @@ ls = 1./om.*UcUe.*deltas.*(n./m1./G).^(0.5);
 gamma = exp(-sqrt((x1./Lambda1).^2 + (x3./Lambda3).^2));
 Dgamma = exp(-sqrt((x1./ls).^2 + (x3./ls).^2));
 
-res = Goody_Gpp_VarK(om,dsd,RT,Goody_K)./dsd.*(h.*gamma.*exp(1i*om.*x1/UcUe/deltas) - (h-1).*Dgamma.*exp(1i.*m1.*om.*x1/UcUe/deltas)); % Cpp*Ue/deltastar/tau_w^2 
+res = Goody_Gpp_VarK(om,dsd,RT,Goody_K)./dsd.*(h.*gamma.*exp(1i*om.*x1/UcUe/deltas) - (h-1).*Dgamma.*exp(1i.*m1.*om.*x1/UcUe/deltas)); % Cpp*Ue/deltastar/tau_w^2
 
 end
 

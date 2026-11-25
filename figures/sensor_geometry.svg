@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 380" role="img" aria-labelledby="title desc">
+<title id="title">Discrete pore and sensor array geometry</title>
+<desc id="desc">Top view of a rectangular averaging sensor populated with discrete pores and a linear array with variable sensor separations. Coordinates are illustrative.</desc>
+<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#475569"/></marker></defs>
+<rect width="1100" height="380" rx="22" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#0f172a"><text x="52" y="45" font-size="23" font-weight="bold">A. Finite sensing interface / discrete pores</text><text x="592" y="45" font-size="23" font-weight="bold">B. Streamwise sensor array</text></g>
+<rect x="105" y="93" width="345" height="176" rx="8" fill="#ccfbf1" stroke="#0f766e" stroke-width="3"/>
+<g fill="#0d9488">
+<circle cx="126" cy="115" r="4.8"/>
+<circle cx="154" cy="115" r="4.8"/>
+<circle cx="182" cy="115" r="4.8"/>
+<circle cx="210" cy="115" r="4.8"/>
+<circle cx="238" cy="115" r="4.8"/>
+<circle cx="266" cy="115" r="4.8"/>
+<circle cx="294" cy="115" r="4.8"/>
+<circle cx="322" cy="115" r="4.8"/>
+<circle cx="350" cy="115" r="4.8"/>
+<circle cx="378" cy="115" r="4.8"/>
+<circle cx="406" cy="115" r="4.8"/>
+<circle cx="434" cy="115" r="4.8"/>
+<circle cx="126" cy="138" r="4.8"/>
+<circle cx="154" cy="138" r="4.8"/>
+<circle cx="182" cy="138" r="4.8"/>
+<circle cx="210" cy="138" r="4.8"/>
+<circle cx="238" cy="138" r="4.8"/>
+<circle cx="266" cy="138" r="4.8"/>
+<circle cx="294" cy="138" r="4.8"/>
+<circle cx="322" cy="138" r="4.8"/>
+<circle cx="350" cy="138" r="4.8"/>
+<circle cx="378" cy="138" r="4.8"/>
+<circle cx="406" cy="138" r="4.8"/>
+<circle cx="434" cy="138" r="4.8"/>
+<circle cx="126" cy="161" r="4.8"/>
+<circle cx="154" cy="161" r="4.8"/>
+<circle cx="182" cy="161" r="4.8"/>
+<circle cx="210" cy="161" r="4.8"/>
+<circle cx="238" cy="161" r="4.8"/>
+<circle cx="266" cy="161" r="4.8"/>
+<circle cx="294" cy="161" r="4.8"/>
+<circle cx="322" cy="161" r="4.8"/>
+<circle cx="350" cy="161" r="4.8"/>
+<circle cx="378" cy="161" r="4.8"/>
+<circle cx="406" cy="161" r="4.8"/>
+<circle cx="434" cy="161" r="4.8"/>
+<circle cx="126" cy="184" r="4.8"/>
+<circle cx="154" cy="184" r="4.8"/>
+<circle cx="182" cy="184" r="4.8"/>
+<circle cx="210" cy="184" r="4.8"/>
+<circle cx="238" cy="184" r="4.8"/>
+<circle cx="266" cy="184" r="4.8"/>
+<circle cx="294" cy="184" r="4.8"/>
+<circle cx="322" cy="184" r="4.8"/>
+<circle cx="350" cy="184" r="4.8"/>
+<circle cx="378" cy="184" r="4.8"/>
+<circle cx="406" cy="184" r="4.8"/>
+<circle cx="434" cy="184" r="4.8"/>
+<circle cx="126" cy="207" r="4.8"/>
+<circle cx="154" cy="207" r="4.8"/>
+<circle cx="182" cy="207" r="4.8"/>
+<circle cx="210" cy="207" r="4.8"/>
+<circle cx="238" cy="207" r="4.8"/>
+<circle cx="266" cy="207" r="4.8"/>
+<circle cx="294" cy="207" r="4.8"/>
+<circle cx="322" cy="207" r="4.8"/>
+<circle cx="350" cy="207" r="4.8"/>
+<circle cx="378" cy="207" r="4.8"/>
+<circle cx="406" cy="207" r="4.8"/>
+<circle cx="434" cy="207" r="4.8"/>
+<circle cx="126" cy="230" r="4.8"/>
+<circle cx="154" cy="230" r="4.8"/>
+<circle cx="182" cy="230" r="4.8"/>
+<circle cx="210" cy="230" r="4.8"/>
+<circle cx="238" cy="230" r="4.8"/>
+<circle cx="266" cy="230" r="4.8"/>
+<circle cx="294" cy="230" r="4.8"/>
+<circle cx="322" cy="230" r="4.8"/>
+<circle cx="350" cy="230" r="4.8"/>
+<circle cx="378" cy="230" r="4.8"/>
+<circle cx="406" cy="230" r="4.8"/>
+<circle cx="434" cy="230" r="4.8"/>
+<circle cx="126" cy="253" r="4.8"/>
+<circle cx="154" cy="253" r="4.8"/>
+<circle cx="182" cy="253" r="4.8"/>
+<circle cx="210" cy="253" r="4.8"/>
+<circle cx="238" cy="253" r="4.8"/>
+<circle cx="266" cy="253" r="4.8"/>
+<circle cx="294" cy="253" r="4.8"/>
+<circle cx="322" cy="253" r="4.8"/>
+<circle cx="350" cy="253" r="4.8"/>
+<circle cx="378" cy="253" r="4.8"/>
+<circle cx="406" cy="253" r="4.8"/>
+<circle cx="434" cy="253" r="4.8"/>
+</g>
+<g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arr)"><path d="M278 282 V316"/><path d="M105 291 V303 H450 V291"/><path d="M91 93 H76 V269 H91"/></g>
+<g font-family="Arial,sans-serif" font-size="17" fill="#334155"><text x="268" y="343">L₃ (spanwise)</text><text x="34" y="182" transform="rotate(-90 34 182)">L₁</text><text x="123" y="76">Pore positions ξₘ and weights wₘ</text></g>
+<path d="M600 190H1050" stroke="#94a3b8" stroke-width="3" stroke-dasharray="5 6"/>
+<g fill="#dbeafe" stroke="#2563eb" stroke-width="3"><rect x="611" y="153" width="30" height="74" rx="3"/><rect x="691" y="153" width="30" height="74" rx="3"/><rect x="802" y="153" width="30" height="74" rx="3"/><rect x="977" y="153" width="30" height="74" rx="3"/></g>
+<g font-family="Arial,sans-serif" font-size="17" fill="#334155"><text x="608" y="129">x₁ →</text><text x="656" y="270">Δx₁₂</text><text x="753" y="270">Δx₂₃</text><text x="876" y="270">Δx₃₄</text><text x="654" y="328">Uniform or nonuniform center spacing</text></g>
+<g stroke="#475569" stroke-width="2" fill="none"><path d="M626 237V254H706V237"/><path d="M706 237V254H817V237"/><path d="M817 237V254H992V237"/></g>
+</svg>
