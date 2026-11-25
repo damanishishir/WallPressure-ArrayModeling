@@ -28,7 +28,7 @@ $$
 Here $g_i$ is the local spatial-sensitivity function. With a statistically homogeneous pressure field, the sensor cross-spectrum can be determined from its point-pressure counterpart $G_{pp}(\Delta\mathbf{x},\omega)$:
 
 $$
-G_{ij}(\omega)=\iint\!\iint g_i(\boldsymbol{\xi})g_j^*(\boldsymbol{\eta})\,
+G_{ij}(\omega)=\iint\iint g_i(\boldsymbol{\xi})g_j^*(\boldsymbol{\eta})\,
 G_{pp}(\mathbf{y}_i-\mathbf{y}_j+\boldsymbol{\xi}-\boldsymbol{\eta},\omega)
 \,\mathrm{d}^2\boldsymbol{\xi}\,\mathrm{d}^2\boldsymbol{\eta}.
 $$
@@ -86,9 +86,9 @@ With $\omega=2\pi f$, a point-pressure Corcos-type cross-spectrum takes the form
 $$
 G_{pp}(\Delta x_1,\Delta x_3,\omega)
 =G_{pp}(0,0,\omega)
-\exp\!\left[-\alpha_1\frac{\omega|\Delta x_1|}{U_c}
+\exp\left[-\alpha_1\frac{\omega|\Delta x_1|}{U_c}
                  -\alpha_3\frac{\omega|\Delta x_3|}{U_c}\right]
-\exp\!\left(i\frac{\omega\Delta x_1}{U_c}\right).
+\exp\left(i\frac{\omega\Delta x_1}{U_c}\right).
 $$
 
 The exponential magnitudes control decorrelation while the complex phase represents convection. The **Modified Corcos implementation** multiplies this expression by $\left(1+\alpha_1\omega|\Delta x_1|/U_c\right)$; the actual implementation is in the corresponding script. The **Chase** and **Smolyakov** point cross-spectra are more involved, so the equations are not duplicated here; consult the local model functions at the foot of their scripts and the cited publications.
@@ -108,8 +108,8 @@ The spatial FFT may be summarized schematically as
 
 $$
 \widehat\Phi_{pp}(k_1,f)\;\propto\;
-\mathcal{F}_{\Delta x_1\to k_1}\!\left\{
-W(\Delta x_1)\,G_{\mathrm{array}}(\Delta x_1,f)\right\},
+\mathcal{F}_{\Delta x_1\to k_1}\left[
+W(\Delta x_1)\,G_{\mathrm{array}}(\Delta x_1,f)\right],
 $$
 
 where $W$ represents the array window. **Proportionality is intentional**: absolute normalization depends on the script's transform convention and whether its intermediate cross-spectrum is dimensional or nondimensional. The supplied scripts perform the conversion and scaling explicitly; compare *like for like* before interpreting levels in dB. Their plotted spectra use magnitude (`abs`) and therefore do not show the sign of a possibly negative numerical estimate.
@@ -126,8 +126,8 @@ For an *ideal uniformly sensitive* sensor of negligible streamwise length and sp
 
 $$
 H_3(k_3)=\frac{1}{L_3}\int_{-L_3/2}^{L_3/2}e^{ik_3x_3}\,\mathrm{d}x_3
-=\operatorname{sinc}\!\left(\frac{k_3L_3}{2}\right),\qquad
-\operatorname{sinc}(z)=\frac{\sin z}{z}.
+=\mathrm{sinc}\left(\frac{k_3L_3}{2}\right),\qquad
+\mathrm{sinc}(z)=\frac{\sin z}{z}.
 $$
 
 Consequently, for a homogeneous pressure field, the **spanwise-averaged streamwise wavenumber–frequency spectrum** is (under the stated spatial Fourier normalization)
@@ -135,7 +135,7 @@ Consequently, for a homogeneous pressure field, the **spanwise-averaged streamwi
 $$
 \Phi_{\mathrm{avg}}(k_1,\omega;L_3)=\frac{1}{2\pi}
 \int_{-\infty}^{\infty}\Phi_{pp}(k_1,k_3,\omega)
-\left|\operatorname{sinc}\!\left(\frac{k_3L_3}{2}\right)\right|^2\,\mathrm{d}k_3.
+\left|\mathrm{sinc}\left(\frac{k_3L_3}{2}\right)\right|^2\,\mathrm{d}k_3.
 $$
 
 For an exponential Corcos spanwise covariance, let $\beta=\alpha_3\omega/U_c$ and $a=\beta L_3$. The **area-averaged/point autospectral ratio** is available directly from the double spatial average:
