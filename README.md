@@ -37,7 +37,7 @@ This formulation is useful because the individual **pore separations**, rather t
 
 ### Discrete-pore approximation
 
-The example sensors are represented by pointlike pores at $\boldsymbol{\xi}_{im}$, with normalized real sensitivity weights $w_{im}$:
+The example sensors are represented by point-like pores at $`\boldsymbol{\xi}_{im}`$, with normalized real-valued sensitivity weights $`w_{im}`$:
 
 $$
 g_i(\boldsymbol{\xi})=\sum_{m=1}^{N_i}w_{im}\,\delta(\boldsymbol{\xi}-\boldsymbol{\xi}_{im}),
